@@ -1,0 +1,3 @@
+[submodule "cmake/maiden"]
+	path = cmake/maiden
+	url = https://github.com/merlin-s/maiden.git
