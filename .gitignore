@@ -1,4 +1,4 @@
-# Compiled Object files
+﻿# Compiled Object files
 *.slo
 *.lo
 *.o
@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# misc
+.idea
+
+# dont commit fonts for now, until i solved the mystery if i may commit those.
+res/fonts
