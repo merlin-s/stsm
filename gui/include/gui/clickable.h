@@ -7,7 +7,7 @@
 namespace gui {
     class Clickable {
     public:
-        virtual ~Clickable() = 0;
+        virtual ~Clickable(){};
     protected:
         virtual bool isMouseEventInInterior(
             const sf::Event::MouseButtonEvent& event

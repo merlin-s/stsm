@@ -4,8 +4,8 @@
 
 #include "gui/mainwindow.h"
 
-#include "debug.h"
-#include "crewman.h"
+#include "util/debug.h"
+#include "game/crewman.h"
 
 
 

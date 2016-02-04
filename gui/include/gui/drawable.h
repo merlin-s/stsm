@@ -5,12 +5,12 @@
 /*
 * zIndex:
 * 0: Background
-* 
+*
 */
 
 namespace gui
 {
-    enum class ZINDEX 
+    enum class ZINDEX
     {
         Z_BACKGROUND,
         Z_HEXFIELD,
@@ -27,7 +27,7 @@ namespace gui
             zIndex = z;
         }
         virtual void draw(sf::RenderTarget& window) = 0;
-        virtual ~Drawable() = 0;
+        virtual ~Drawable() {};
     private:
         ZINDEX zIndex;
     };

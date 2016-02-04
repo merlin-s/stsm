@@ -2,7 +2,7 @@
 #include "mainmenu.h"
 #include "hexagon.h"
 #include "splashscreen.h"
-#include "debug.h"
+#include "util/debug.h"
 #include "gui/fontmanager.h"
 
 GUI_NS_B
@@ -15,10 +15,10 @@ void MainWindow::Start(void)
     FontManager::init();
     renderWindow.create(
         sf::VideoMode(
-            INIT_SCREEN_WIDTH, 
-            INIT_SCREEN_HEIGHT, 
+            INIT_SCREEN_WIDTH,
+            INIT_SCREEN_HEIGHT,
             32
-        ), 
+        ),
         "Pang!"
     );
     //mainWindow.SetFramerateLimit(60);
@@ -116,7 +116,7 @@ void MainWindow::GameLoop()
 }
 
 gui::Rect MainWindow::getRelRect(
-    double relx, double rely, 
+    double relx, double rely,
     double relheight, double relwidth)
 {
     Rect ret;

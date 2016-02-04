@@ -2,8 +2,8 @@
 #include "gui.h"
 #include "hexboard.h"
 
-#include "SFML\Window.hpp"
-#include "SFML\Graphics.hpp"
+#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 #include <list>
 namespace gui
 {
@@ -11,10 +11,10 @@ namespace gui
     {
 
     public:
-        enum class MenuResult { 
-            Nothing, 
-            Exit, 
-            Play 
+        enum class MenuResult {
+            Nothing,
+            Exit,
+            Play
         };
 
         struct MenuItem

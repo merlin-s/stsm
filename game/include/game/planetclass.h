@@ -1,7 +1,7 @@
 #ifndef PLANETCLASS_H_INCLUDED
 #define PLANETCLASS_H_INCLUDED
 
-#include <QtCore\qobject.h>
+#include <QtCore/qobject.h>
 
 class PlanetClass
 {

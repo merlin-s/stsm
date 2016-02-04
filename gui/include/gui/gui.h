@@ -1,6 +1,6 @@
 #ifndef GUI_H_INCLUDED
 #define GUI_H_INCLUDED
-#include "debug.h"
+#include "util/debug.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 

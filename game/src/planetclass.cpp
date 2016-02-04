@@ -1,5 +1,5 @@
 #include "planetclass.h"
-#include "qstr.h"
+#include "util/qstr.h"
 
 #include <array>
 
