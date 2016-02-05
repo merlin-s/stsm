@@ -21,14 +21,15 @@ enum class ZINDEX {
 
 class Drawable {
 public:
+  Drawable() = default;
   Drawable(const Drawable &) = delete;
   Drawable(Drawable &&) = delete;
-  Drawable(ZINDEX z) { zIndex = z; }
+  explicit Drawable(ZINDEX z) { zIndex = static_cast<decltype(zIndex)>(z); }
   virtual void draw(sf::RenderTarget &window) = 0;
   virtual ~Drawable(){};
 
 private:
-  std::underlying_type<ZINDEX> zIndex;
+  std::underlying_type<ZINDEX>::type zIndex;
 };
 }
 

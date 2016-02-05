@@ -6,8 +6,9 @@ sf::Sprite TextureCache::getSprite(const char *name) {
   if (it == std::end(mtexCache)) {
     const static std::string basepath = "res/tex/";
     sf::Texture &t = mtexCache[name];
-    bool loaded = t.loadFromFile(basepath + name);
-    runtime_assert(loaded, std::string("failed to load file ") + name);
+    auto path = basepath + name;
+    bool loaded = t.loadFromFile(path);
+    runtime_assert(loaded, std::string("failed to load file ") + path);
     return sf::Sprite(t);
   }
   return sf::Sprite(mtexCache[name]);

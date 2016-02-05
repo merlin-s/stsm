@@ -6,7 +6,10 @@
 namespace gui {
 class Clickable {
 public:
+  Clickable() = default;
   virtual ~Clickable(){};
+  Clickable(Clickable const &) = delete;
+  Clickable &operator=(Clickable const &) = delete;
 
 protected:
   virtual bool
