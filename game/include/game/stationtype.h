@@ -1,27 +1,23 @@
 #ifndef STATION_TYPE_H_INCLUDED
 #define STATION_TYPE_H_INCLUDED
 
-#include <QtCore/qobject.h>
 #include <QtCore/qlist.h>
+#include <QtCore/qobject.h>
 
 #include "shiptype.h"
 
-class StationType
-{
+class StationType {
 public:
-    QString getName() const {
-        return name_;
-    }
-    QList<ShipType> const& getProduceableShipTypes() const {
-        return produceableShipTypes_;
-    }
-    unsigned getDockingPorts() const {
-        return dockingPorts_;
-    };
+  QString getName() const { return name_; }
+  QList<ShipType> const &getProduceableShipTypes() const {
+    return produceableShipTypes_;
+  }
+  unsigned getDockingPorts() const { return dockingPorts_; };
+
 private:
-    QString name_;
-    QList<ShipType> produceableShipTypes_;
-    unsigned dockingPorts_;
+  QString name_;
+  QList<ShipType> produceableShipTypes_;
+  unsigned dockingPorts_;
 };
 
 #endif

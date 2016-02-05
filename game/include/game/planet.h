@@ -5,14 +5,14 @@
 
 #include "planetclass.h"
 
-class Planet
-{
+class Planet {
 public:
-    QString getName() const;
-    PlanetClass getClass() const;
+  QString getName() const;
+  PlanetClass getClass() const;
+
 private:
-    QString name_;
-    PlanetClass class_;
+  QString name_;
+  PlanetClass class_;
 };
 
 #endif

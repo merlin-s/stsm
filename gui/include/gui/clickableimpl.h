@@ -5,16 +5,15 @@
 #include "gui/mousedata.h"
 
 namespace gui {
-    class ClickableImpl : public Clickable {
-    public:
-        virtual ~ClickableImpl(){};
-        bool handleClick(
-            const sf::Event::MouseButtonEvent& event,
-            sf::Event::EventType eventType
-            );
-    protected:
-    private:
-        static MouseData mouseData;
-    };
+class ClickableImpl : public Clickable {
+public:
+  virtual ~ClickableImpl(){};
+  bool handleClick(const sf::Event::MouseButtonEvent &event,
+                   sf::Event::EventType eventType);
+
+protected:
+private:
+  static MouseData mouseData;
+};
 }
 #endif

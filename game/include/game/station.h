@@ -3,10 +3,9 @@
 
 #include <QtCore/qobject.h>
 
-class Station
-{
-    Q_PROPERTY(StationType stationType);
-    Q_PROPERTY(QString designation);
+class Station {
+  Q_PROPERTY(StationType stationType);
+  Q_PROPERTY(QString designation);
 };
 
 #endif

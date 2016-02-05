@@ -3,8 +3,6 @@
 
 #include <QtCore/qstring.h>
 
-inline QString qutf8(const char* utf8str) {
-    return QString::fromUtf8(utf8str);
-}
+inline QString qutf8(const char *utf8str) { return QString::fromUtf8(utf8str); }
 
 #endif

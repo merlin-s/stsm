@@ -3,10 +3,10 @@
 
 #include <QtCore/qobject.h>
 
-class ShipType
-{
+class ShipType {
 public:
-    QString getName() const;
+  QString getName() const;
+
 private:
 };
 
