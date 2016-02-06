@@ -10,12 +10,12 @@ const int INIT_SCREEN_WIDTH = 1024;
 const int INIT_SCREEN_HEIGHT = 768;
 MainWindow *mainWindow = 0;
 void MainWindow::Start(void) {
-  runtime_assert(gameState == Uninitialized, "invalid gamestate");
+  runtime_assert(gameState == GameState::Uninitialized, "invalid gamestate");
   FontManager::init();
   renderWindow.create(sf::VideoMode(INIT_SCREEN_WIDTH, INIT_SCREEN_HEIGHT, 32),
                       "Pang!");
   // mainWindow.SetFramerateLimit(60);
-  gameState = MainWindow::ShowingSplash;
+  gameState = GameState::ShowingSplash;
   while (!IsExiting()) {
     GameLoop();
   }
@@ -23,7 +23,7 @@ void MainWindow::Start(void) {
 }
 
 bool MainWindow::IsExiting() {
-  if (gameState == MainWindow::Exiting)
+  if (gameState == GameState::Exiting)
     return true;
   else
     return false;
@@ -35,21 +35,23 @@ sf::Event MainWindow::getInput() {
   return currentEvent;
 }
 
+#pragma GCC push
+#pragma GCC diagnostic ignored "-Wswitch"
 void MainWindow::GameLoop() {
   sf::Event currentEvent;
   const float scrollSpeed = 6.f;
   if (!renderWindow.pollEvent(currentEvent))
     return;
   switch (gameState) {
-  case MainWindow::ShowingMenu: {
+  case GameState::ShowingMenu: {
     ShowMenu();
     break;
   }
-  case MainWindow::ShowingSplash: {
+  case GameState::ShowingSplash: {
     ShowSplashScreen();
     break;
   }
-  case MainWindow::Playing: {
+  case GameState::Playing: {
     renderWindow.clear(sf::Color(0, 0, 0));
     hexBoard.draw(renderWindow);
     renderWindow.display();
@@ -57,13 +59,13 @@ void MainWindow::GameLoop() {
     float scrollY = hexBoard.getScrollY();
     switch (currentEvent.type) {
     case sf::Event::Closed: {
-      gameState = MainWindow::Exiting;
+      gameState = GameState::Exiting;
       break;
     }
     case sf::Event::KeyPressed: {
       switch (currentEvent.key.code) {
       case sf::Keyboard::Escape: {
-        gameState = MainWindow::ShowingMenu;
+        gameState = GameState::ShowingMenu;
         break;
       }
       case sf::Keyboard::Left: {
@@ -101,6 +103,7 @@ void MainWindow::GameLoop() {
   }
   }
 }
+#pragma GCC pop
 
 gui::Rect MainWindow::getRelRect(double relx, double rely, double relheight,
                                  double relwidth) {
@@ -116,7 +119,7 @@ gui::Rect MainWindow::getRelRect(double relx, double rely, double relheight,
 void MainWindow::ShowSplashScreen() {
   SplashScreen splashScreen;
   splashScreen.Show(renderWindow);
-  gameState = MainWindow::ShowingMenu;
+  gameState = GameState::ShowingMenu;
 }
 
 void MainWindow::ShowMenu() {
@@ -124,10 +127,10 @@ void MainWindow::ShowMenu() {
   MainMenu::MenuResult result = mainMenu.Show(renderWindow);
   switch (result) {
   case MainMenu::MenuResult::Exit:
-    gameState = Exiting;
+    gameState = GameState::Exiting;
     break;
   case MainMenu::MenuResult::Play:
-    gameState = Playing;
+    gameState = GameState::Playing;
     break;
   }
 }

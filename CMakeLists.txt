@@ -1,7 +1,12 @@
 
 cmake_minimum_required(VERSION 2.8)
-include(cmake/maiden/maiden.cmake)
 cmake_policy(SET CMP0023 OLD)
+cmake_policy(SET CMP0043 OLD)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
+message("${CMAKE_MODULE_PATH}")
+message("${CMAKE_MODULE_PATH}/maiden.cmake")
+include(maiden/maiden)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)

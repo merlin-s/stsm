@@ -20,7 +20,7 @@ private:
   void ShowSplashScreen();
   void ShowMenu();
 
-  enum GameState {
+  enum class GameState {
     Uninitialized,
     ShowingSplash,
     Paused,
@@ -29,7 +29,7 @@ private:
     Exiting
   };
 
-  GameState gameState = Uninitialized;
+  GameState gameState = GameState::Uninitialized;
   ;
   sf::RenderWindow renderWindow;
   GameObjectManager gameObjectManager;

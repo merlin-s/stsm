@@ -1,4 +1,7 @@
 #include "gui/clickableimpl.h"
+
+#include <cassert>
+
 GUI_NS_B
 
 MouseData ClickableImpl::mouseData;
@@ -18,6 +21,8 @@ bool ClickableImpl::handleClick(const sf::Event::MouseButtonEvent &event,
         onMouseButtonClicked(button);
       }
       break;
+    default:
+      assert(!"Unhandled Enum Value");
     };
     return true;
   }

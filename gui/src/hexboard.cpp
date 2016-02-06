@@ -28,7 +28,7 @@ Hexagon &HexBoard::getHex(hex_coordinate_t x, hex_coordinate_t y) {
   hex_coordinate_t hy = y % HEXBOARD_CHUNK_SIZE;
   chunk_t &c = getChunk({cx, cy});
   const auto idx = hx + hy * HEXBOARD_CHUNK_SIZE;
-  if (idx >= 0 && idx <= c.size()) {
+  if (idx <= c.size()) {
     auto &hex = c[idx];
     if (!hex) {
       hex.reset(new Hexagon(HexagonStyle::Normal, HEXBOARD_CHUNK_SIZE * cx + hx,

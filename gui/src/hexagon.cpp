@@ -1,6 +1,7 @@
 #include "gui/hexagon.h"
 #include "gui/fontmanager.h"
 #include <QString>
+#include <cassert>
 
 GUI_NS_B
 const float hexBaseSizeH = 24.f;
@@ -71,6 +72,8 @@ void Hexagon::setStyle(HexagonStyle style) {
   case HexagonStyle::OutOfBounds:
     hex.setOutlineColor(sf::Color::Red);
     break;
+  default:
+    assert(!"Unhandled Enum Value");
   }
 }
 
