@@ -2,8 +2,9 @@
 
 #include <map>
 
-GUI_NS_B
+namespace gui {
 namespace {
+
 const char *fontnames[] = {"res/fonts/arial.ttf"};
 std::map<FontType, sf::Font> fontmap;
 }
@@ -17,5 +18,4 @@ void FontManager::init() {
   }
 }
 sf::Font &FontManager::getFont(FontType fonttype) { return fontmap[fonttype]; }
-
-GUI_NS_E
+}

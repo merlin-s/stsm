@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-GUI_NS_B
+namespace gui {
 
 bool Clickable::handleClick(const sf::Event::MouseButtonEvent &event,
                             sf::Event::EventType eventType) {
@@ -27,4 +27,4 @@ bool Clickable::handleClick(const sf::Event::MouseButtonEvent &event,
   }
   return false;
 }
-GUI_NS_E
+}

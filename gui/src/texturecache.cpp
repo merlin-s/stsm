@@ -1,5 +1,6 @@
 #include "texturecache.h"
-GUI_NS_B
+
+namespace gui {
 std::unordered_map<std::string, sf::Texture> TextureCache::mtexCache;
 sf::Sprite TextureCache::getSprite(const char *name) {
   auto it = mtexCache.find(name);
@@ -13,4 +14,4 @@ sf::Sprite TextureCache::getSprite(const char *name) {
   }
   return sf::Sprite(mtexCache[name]);
 }
-GUI_NS_E
+}

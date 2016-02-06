@@ -5,7 +5,7 @@
 #include "splashscreen.h"
 #include "util/debug.h"
 
-GUI_NS_B
+namespace gui {
 const int INIT_SCREEN_WIDTH = 1024;
 const int INIT_SCREEN_HEIGHT = 768;
 MainWindow *mainWindow = 0;
@@ -134,4 +134,4 @@ void MainWindow::ShowMenu() {
     break;
   }
 }
-GUI_NS_E
+}

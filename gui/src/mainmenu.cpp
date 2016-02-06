@@ -4,7 +4,7 @@
 #include "texturecache.h"
 #include <algorithm>
 
-GUI_NS_B
+namespace gui {
 using namespace std;
 
 MainMenu::MenuResult MainMenu::Show(sf::RenderWindow &window) {
@@ -72,4 +72,4 @@ MainMenu::MenuResult MainMenu::GetMenuResponse(sf::RenderWindow &window) {
   }
   throw std::runtime_error(__FUNCTION__);
 }
-GUI_NS_E
+}

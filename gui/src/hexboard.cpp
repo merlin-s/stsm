@@ -1,6 +1,6 @@
 #include "hexboard.h"
 
-GUI_NS_B
+namespace gui {
 HexBoard::HexBoard() : Drawable(ZINDEX::Z_HEXFIELD) {}
 HexBoard::~HexBoard() {}
 
@@ -85,4 +85,4 @@ bool HexBoard::handleClick(const sf::Event::MouseButtonEvent &event,
   }
   return false;
 }
-GUI_NS_E
+}

@@ -6,9 +6,6 @@
 
 #include <unordered_set>
 
-#define GUI_NS_B namespace gui {
-#define GUI_NS_E }
-
 namespace gui {
 typedef float Type;
 typedef sf::Rect<Type> Rect;

@@ -1,7 +1,7 @@
 #include "splashscreen.h"
 #include "texturecache.h"
 
-GUI_NS_B
+namespace gui {
 void SplashScreen::Show(sf::RenderWindow &renderWindow) {
   sf::Sprite sprite = TextureCache::getSprite("splashscreen.png");
 
@@ -19,4 +19,4 @@ void SplashScreen::Show(sf::RenderWindow &renderWindow) {
     }
   }
 }
-GUI_NS_E
+}
