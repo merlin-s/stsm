@@ -1,12 +1,12 @@
 #ifndef HEXAGON_H_INCLUDED
 #define HEXAGON_H_INCLUDED
 
-#include "gui/clickableimpl.h"
+#include "gui/clickable.h"
 #include "gui/drawable.h"
 
 namespace gui {
 enum class HexagonStyle { Normal, Active, OutOfBounds, Count };
-class Hexagon : public gui::ClickableImpl, public Drawable {
+class Hexagon : public gui::Clickable, public Drawable {
 public:
   Hexagon(HexagonStyle style, int x, int y);
   Hexagon(const Hexagon &) = delete;

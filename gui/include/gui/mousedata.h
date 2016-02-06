@@ -11,23 +11,13 @@ class MouseData {
 public:
   typedef Clickable ClickableT;
 
-  MouseData() { clear(); }
-  ~MouseData() {}
+  MouseData();
+  ~MouseData();
+  static MouseData *instance();
 
-  void setPressed(ClickableT *obj, sf::Mouse::Button btn) {
-    mbtnobj[btn] = obj;
-  }
-  bool setReleased(ClickableT *obj, sf::Mouse::Button btn) {
-    auto &storedobj = mbtnobj[btn];
-    if (!storedobj)
-      return false;
-    if (storedobj == obj) {
-      storedobj = nullptr;
-      return true;
-    }
-    return false;
-  }
-  void clear() { mbtnobj.fill(nullptr); }
+  void setPressed(ClickableT *obj, sf::Mouse::Button btn);
+  bool setReleased(ClickableT *obj, sf::Mouse::Button btn);
+  void clear();
 
 private:
   std::array<ClickableT *, sf::Mouse::Button::ButtonCount> mbtnobj;

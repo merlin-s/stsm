@@ -11,6 +11,9 @@ public:
   Clickable(Clickable const &) = delete;
   Clickable &operator=(Clickable const &) = delete;
 
+  bool handleClick(const sf::Event::MouseButtonEvent &event,
+                   sf::Event::EventType eventType);
+
 protected:
   virtual bool
   isMouseEventInInterior(const sf::Event::MouseButtonEvent &event) = 0;

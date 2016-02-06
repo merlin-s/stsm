@@ -1,23 +1,22 @@
-#include "gui/clickableimpl.h"
+#include "gui/clickable.h"
+#include "gui/mousedata.h"
 
 #include <cassert>
 
 GUI_NS_B
 
-MouseData ClickableImpl::mouseData;
-
-bool ClickableImpl::handleClick(const sf::Event::MouseButtonEvent &event,
-                                sf::Event::EventType eventType) {
+bool Clickable::handleClick(const sf::Event::MouseButtonEvent &event,
+                            sf::Event::EventType eventType) {
   if (isMouseEventInInterior(event)) {
     auto button = event.button;
     switch (eventType) {
     case sf::Event::MouseButtonPressed:
-      mouseData.setPressed(this, button);
+      MouseData::instance()->setPressed(this, button);
       onMouseButtonPressed(button);
       break;
     case sf::Event::MouseButtonReleased:
       onMouseButtonReleased(button);
-      if (mouseData.setReleased(this, button)) {
+      if (MouseData::instance()->setReleased(this, button)) {
         onMouseButtonClicked(button);
       }
       break;
