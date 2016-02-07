@@ -9,8 +9,8 @@ class MainWindow {
 public:
   void Start();
 
-  gui::Rect getRelRect(double relx, double rely, double relheight,
-                       double relwidth);
+  AbsRect getRelRect(double relx, double rely, double relheight,
+                     double relwidth);
 
 private:
   sf::Event getInput();
@@ -30,7 +30,6 @@ private:
   };
 
   GameState gameState = GameState::Uninitialized;
-  ;
   sf::RenderWindow renderWindow;
   GameObjectManager gameObjectManager;
   HexBoard hexBoard;

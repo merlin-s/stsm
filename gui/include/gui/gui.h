@@ -7,8 +7,11 @@
 #include <unordered_set>
 
 namespace gui {
-typedef float Type;
-typedef sf::Rect<Type> Rect;
+using RelType = float;
+using RelRect = sf::Rect<RelType>;
+using AbsType = int;
+using AbsRect = sf::Rect<AbsType>;
+
 struct pairhash {
   template <typename T, typename U>
   std::size_t operator()(const std::pair<T, U> &x) const {

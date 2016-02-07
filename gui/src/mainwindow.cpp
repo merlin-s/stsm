@@ -105,14 +105,14 @@ void MainWindow::GameLoop() {
 }
 #pragma GCC pop
 
-gui::Rect MainWindow::getRelRect(double relx, double rely, double relheight,
-                                 double relwidth) {
-  Rect ret;
+AbsRect MainWindow::getRelRect(double relx, double rely, double relheight,
+                               double relwidth) {
+  AbsRect ret;
   auto v = renderWindow.getSize();
-  ret.left = gui::Type(relx * v.x - 0.01);
-  ret.top = gui::Type(rely * v.y - 0.01);
-  ret.height = gui::Type(relheight * v.y - 0.01);
-  ret.width = gui::Type(relwidth * v.x - 0.01);
+  ret.left = gui::AbsType(relx * v.x);
+  ret.top = gui::AbsType(rely * v.y);
+  ret.height = gui::AbsType(relheight * v.y);
+  ret.width = gui::AbsType(relwidth * v.x);
   return ret;
 }
 

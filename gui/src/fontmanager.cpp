@@ -4,10 +4,10 @@
 
 namespace gui {
 namespace {
-
 const char *fontnames[] = {"res/fonts/arial.ttf"};
 std::map<FontType, sf::Font> fontmap;
 }
+
 void FontManager::init() {
   for (int i = 0; i < static_cast<int>(FontType::Count); ++i) {
     sf::Font f;

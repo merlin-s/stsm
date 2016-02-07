@@ -5,6 +5,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 #include <list>
+
 namespace gui {
 class MainMenu {
 
@@ -13,7 +14,7 @@ public:
 
   struct MenuItem {
   public:
-    Rect rect;
+    AbsRect rect;
     MenuResult action;
   };
 

@@ -29,6 +29,7 @@
 
 # misc
 .idea
+CMakeLists.txt.user
 
 # dont commit fonts for now, until i solved the mystery if i may commit those.
 res/fonts
