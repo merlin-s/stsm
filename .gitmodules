@@ -1,7 +1,3 @@
 [submodule "cmake/maiden"]
 	path = cmake/maiden
 	url = git@github.com:merlin-s/maiden.git
-[submodule "3rdparty/better-enums"]
-	path = 3rdparty/better-enums
-	url = https://github.com/aantron/better-enums.git
-	branch = master

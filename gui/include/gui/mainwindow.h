@@ -3,8 +3,9 @@
 #include "gui/hexboard.h"
 #include "gui/hud.h"
 
+#include "util/enum.h"
+
 namespace gui {
-typedef int GameObjectManager;
 class MainWindow {
 public:
   void Start();
@@ -31,7 +32,6 @@ private:
 
   GameState gameState = GameState::Uninitialized;
   sf::RenderWindow renderWindow;
-  GameObjectManager gameObjectManager;
   HexBoard hexBoard;
   HUD hud;
 };

@@ -5,10 +5,13 @@
 #include "splashscreen.h"
 #include "util/debug.h"
 
+#include <iostream>
+
 namespace gui {
 const int INIT_SCREEN_WIDTH = 1024;
 const int INIT_SCREEN_HEIGHT = 768;
 MainWindow *mainWindow = 0;
+
 void MainWindow::Start(void) {
   runtime_assert(gameState == GameState::Uninitialized, "invalid gamestate");
   FontManager::init();
@@ -124,12 +127,13 @@ void MainWindow::ShowSplashScreen() {
 
 void MainWindow::ShowMenu() {
   MainMenu mainMenu;
-  MainMenu::MenuResult result = mainMenu.Show(renderWindow);
+  MenuResult result = mainMenu.Show(renderWindow);
+
   switch (result) {
-  case MainMenu::MenuResult::Exit:
+  case MenuResult::Exit:
     gameState = GameState::Exiting;
     break;
-  case MainMenu::MenuResult::Play:
+  case MenuResult::Play:
     gameState = GameState::Playing;
     break;
   }

@@ -7,7 +7,7 @@
 namespace gui {
 using namespace std;
 
-MainMenu::MenuResult MainMenu::Show(sf::RenderWindow &window) {
+MenuResult MainMenu::Show(sf::RenderWindow &window) {
 
   // Load menu image from file
   sf::Sprite sprite = TextureCache::getSprite("mainmenu.png");
@@ -48,7 +48,7 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow &window) {
   return GetMenuResponse(window);
 }
 
-MainMenu::MenuResult MainMenu::HandleClick(int x, int y) {
+MenuResult MainMenu::HandleClick(int x, int y) {
   auto retit =
       find_if(begin(mmenuItems), end(mmenuItems), [x, y](MenuItem &m) -> bool {
         bool iny = m.rect.top + m.rect.height > y && m.rect.top < y;
@@ -58,7 +58,7 @@ MainMenu::MenuResult MainMenu::HandleClick(int x, int y) {
   return retit != end(mmenuItems) ? retit->action : MenuResult::Nothing;
 }
 
-MainMenu::MenuResult MainMenu::GetMenuResponse(sf::RenderWindow &window) {
+MenuResult MainMenu::GetMenuResponse(sf::RenderWindow &window) {
   sf::Event menuEvent;
   while ("forever") {
     while (window.pollEvent(menuEvent)) {

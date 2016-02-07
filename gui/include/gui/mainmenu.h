@@ -4,14 +4,18 @@
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
+
+#include "util/enum.h"
+
 #include <list>
 
 namespace gui {
+
+UTIL_ENUM(MenuResult, Nothing, Exit, Play);
+
 class MainMenu {
 
 public:
-  enum class MenuResult { Nothing, Exit, Play };
-
   struct MenuItem {
   public:
     AbsRect rect;
