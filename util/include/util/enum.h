@@ -14,20 +14,16 @@
         DEF_ENUM_IN_NS_S( name, seq_define )
         DEF_N4428_S( name, seq_define )
 **/
-//#define BOOST_PP_VARIADICS 1
+
 #include <boost/preprocessor/arithmetic/sub.hpp>
-#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/punctuation/comma.hpp>
-#include <boost/preprocessor/punctuation/comma_if.hpp>
-#include <boost/preprocessor/repetition.hpp>
 #include <boost/preprocessor/seq/enum.hpp>
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/seq/pop_back.hpp>
 #include <boost/preprocessor/seq/reverse.hpp>
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/seq/size.hpp>
-#include <boost/preprocessor/seq/transform.hpp>
 #include <boost/preprocessor/stringize.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
 
