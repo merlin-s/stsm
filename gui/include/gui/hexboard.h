@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include <vector>
 
+#if 0
 namespace gui {
 const unsigned HEXBOARD_CHUNK_SIZE = 100;
 typedef int hex_coordinate_t;
@@ -42,5 +43,6 @@ private:
   chunk_t &getChunk(chunk_key_t key);
 };
 }
+#endif
 
 #endif

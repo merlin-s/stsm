@@ -56,10 +56,10 @@ void MainWindow::GameLoop() {
   }
   case GameState::Playing: {
     renderWindow.clear(sf::Color(0, 0, 0));
-    hexBoard.draw(renderWindow);
+    //hexBoard.draw(renderWindow);
     renderWindow.display();
-    float scrollX = hexBoard.getScrollX();
-    float scrollY = hexBoard.getScrollY();
+    //float scrollX = hexBoard.getScrollX();
+    //float scrollY = hexBoard.getScrollY();
     switch (currentEvent.type) {
     case sf::Event::Closed: {
       gameState = GameState::Exiting;
@@ -71,32 +71,32 @@ void MainWindow::GameLoop() {
         gameState = GameState::ShowingMenu;
         break;
       }
-      case sf::Keyboard::Left: {
-        scrollX += scrollSpeed;
-        break;
+      // case sf::Keyboard::Left: {
+      //   scrollX += scrollSpeed;
+      //   break;
+      // }
+      // case sf::Keyboard::Up: {
+      //   scrollY += scrollSpeed;
+      //   break;
+      // }
+      // case sf::Keyboard::Right: {
+      //   scrollX -= scrollSpeed;
+      //   break;
+      // }
+      // case sf::Keyboard::Down: {
+      //   scrollY -= scrollSpeed;
+      //   break;
+      // }
       }
-      case sf::Keyboard::Up: {
-        scrollY += scrollSpeed;
-        break;
-      }
-      case sf::Keyboard::Right: {
-        scrollX -= scrollSpeed;
-        break;
-      }
-      case sf::Keyboard::Down: {
-        scrollY -= scrollSpeed;
-        break;
-      }
-      }
-      hexBoard.setScrollPos(scrollX, scrollY);
+      //hexBoard.setScrollPos(scrollX, scrollY);
       break;
     }
     case sf::Event::MouseButtonReleased: {
-      hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
+      //hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
       break;
     }
     case sf::Event::MouseButtonPressed: {
-      hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
+      //hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
       break;
     }
     default:

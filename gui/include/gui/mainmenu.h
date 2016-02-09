@@ -10,18 +10,14 @@
 #include <list>
 
 namespace gui {
-
-UTIL_ENUM(MenuResult, Nothing, Exit, Play);
-
+DEF_ENUM_IN_NS(MenuResult, Nothing, Exit, Play);
 class MainMenu {
-
 public:
   struct MenuItem {
   public:
     AbsRect rect;
     MenuResult action;
   };
-
   MenuResult Show(sf::RenderWindow &window);
 
 private:

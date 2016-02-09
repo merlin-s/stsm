@@ -3,6 +3,8 @@
 #include <QString>
 #include <cassert>
 
+#if 0
+
 namespace gui {
 const float hexBaseSizeH = 24.f;
 const float hexBaseSize = hexBaseSizeH * 2.f;
@@ -90,3 +92,4 @@ bool Hexagon::isInHex(float posx, float posy) const {
   return 2 * v * h - v * q2x - h * q2y >= 0;
 }
 }
+#endif

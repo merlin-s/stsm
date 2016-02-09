@@ -4,7 +4,9 @@
 #include "gui/clickable.h"
 #include "gui/drawable.h"
 
+#if 0
 namespace gui {
+
 enum class HexagonStyle { Normal, Active, OutOfBounds, Count };
 class Hexagon : public gui::Clickable, public Drawable {
 public:
@@ -35,5 +37,6 @@ private:
   bool active = false;
 };
 }
+#endif
 
 #endif
