@@ -4,55 +4,49 @@
 #include "texturecache.h"
 #include <algorithm>
 
+
 namespace gui {
 using namespace std;
 
+MainMenu::MainMenu()
+{
+  mmenuItems.emplace_back( MenuItem {
+      RelRect{0.25, 0.3, 0.5, 0.3},
+      MenuResult::Play,
+      sf::String{"Play"},
+      sf::Color::Blue
+    }
+  );
+  mmenuItems.emplace_back( MenuItem {
+    RelRect{0.25, 0.7, 0.5, 0.2},
+    MenuResult::Exit,
+    sf::String{"Exit"},
+    sf::Color::Red
+  });
+}
+
 MenuResult MainMenu::Show(sf::RenderWindow &window) {
-
-  // Load menu image from file
-  sf::Sprite sprite = TextureCache::getSprite("mainmenu.png");
-
-  // Setup clickable regions
-
-  // Play menu item coordinates
-  MenuItem playButton;
-  playButton.rect = mainWindow->getRelRect(0.0, 145. / 768., 235. / 768., 1.0);
-  playButton.action = MenuResult::Play;
-
-  // Exit menu item coordinates
-  MenuItem exitButton;
-  exitButton.rect = mainWindow->getRelRect(0.0, 383. / 768., 180. / 768., 1.0);
-  exitButton.action = MenuResult::Exit;
-
-  mmenuItems.push_back(playButton);
-  mmenuItems.push_back(exitButton);
-  sf::Color c;
-  sf::RectangleShape erect(
-      sf::Vector2f(exitButton.rect.width, exitButton.rect.height));
-  erect.setPosition(exitButton.rect.left, exitButton.rect.top);
-  c = sf::Color::Blue;
-  c.a = 125;
-  erect.setFillColor(c);
-  sf::RectangleShape prect(
-      sf::Vector2f(playButton.rect.width, playButton.rect.height));
-  prect.setPosition(playButton.rect.left, playButton.rect.top);
-  c = sf::Color::Red;
-  c.a = 125;
-  prect.setFillColor(c);
-
-  window.draw(sprite);
-  window.draw(erect);
-  window.draw(prect);
+  for( auto const & mi : mmenuItems ) {
+    AbsRect absrect = mainWindow->GetAbsRectFromRel(mi.rect);
+    sf::RectangleShape r{
+      sf::Vector2f{float(absrect.width), float(absrect.height)}
+    };
+    r.setPosition(absrect.left, absrect.top);
+    sf::Color c = mi.color;
+    c.a = 125;
+    r.setFillColor(c);
+    window.draw(r);
+  }
   window.display();
-
   return GetMenuResponse(window);
 }
 
 MenuResult MainMenu::HandleClick(int x, int y) {
   auto retit =
-      find_if(begin(mmenuItems), end(mmenuItems), [x, y](MenuItem &m) -> bool {
-        bool iny = m.rect.top + m.rect.height > y && m.rect.top < y;
-        bool inx = m.rect.left < x && m.rect.left + m.rect.width > x;
+      find_if(begin(mmenuItems), end(mmenuItems), [x, y](MenuItem const &m) -> bool {
+        AbsRect r = mainWindow->GetAbsRectFromRel(m.rect);
+        bool iny = r.top + r.height > y && r.top < y;
+        bool inx = r.left < x && r.left + r.width > x;
         return iny && inx;
       });
   return retit != end(mmenuItems) ? retit->action : MenuResult::Nothing;

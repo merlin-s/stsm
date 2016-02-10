@@ -7,6 +7,10 @@ namespace gui {
 
 class MainWindow {
 public:
+  MainWindow();
+  MainWindow(MainWindow const&) = delete;
+  MainWindow& operator=(MainWindow const&) = delete;
+
   DEF_ENUM_IN_CLASS(GameState,
     Uninitialized,
     ShowingSplash,
@@ -19,8 +23,7 @@ public:
 
   void Start();
 
-  AbsRect getRelRect(double relx, double rely, double relheight,
-                     double relwidth);
+  AbsRect GetAbsRectFromRel( RelRect r );
 
 private:
   sf::Event getInput();

@@ -13,14 +13,19 @@ namespace gui {
 DEF_ENUM_IN_NS(MenuResult, Nothing, Exit, Play);
 class MainMenu {
 public:
-  struct MenuItem {
-  public:
-    AbsRect rect;
-    MenuResult action;
-  };
+  MainMenu();
+  MainMenu(MainMenu const&) = delete;
+  MainMenu& operator=(MainMenu const&) = delete;
+
   MenuResult Show(sf::RenderWindow &window);
 
 private:
+  struct MenuItem {
+    RelRect    rect;
+    MenuResult action;
+    sf::String text;
+    sf::Color  color;
+  };
   MenuResult GetMenuResponse(sf::RenderWindow &window);
   MenuResult HandleClick(int x, int y);
   std::list<MenuItem> mmenuItems;

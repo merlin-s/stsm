@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "gui/fontmanager.h"
+#include "gui/texturecache.h"
 #include "hexagon.h"
 #include "mainmenu.h"
-#include "splashscreen.h"
 #include "util/debug.h"
 
 #include <iostream>
@@ -12,11 +12,15 @@ const int INIT_SCREEN_WIDTH = 1024;
 const int INIT_SCREEN_HEIGHT = 768;
 MainWindow *mainWindow = 0;
 
+MainWindow::MainWindow(){
+
+}
+
 void MainWindow::Start(void) {
   runtime_assert(gameState == GameState::Uninitialized, "invalid gamestate");
   FontManager::init();
   renderWindow.create(sf::VideoMode(INIT_SCREEN_WIDTH, INIT_SCREEN_HEIGHT, 32),
-                      "Pang!");
+                      "STSM");
   // mainWindow.SetFramerateLimit(60);
   gameState = GameState::ShowingSplash;
   while (!IsExiting()) {
@@ -52,14 +56,15 @@ void MainWindow::GameLoop() {
   }
   case GameState::ShowingSplash: {
     ShowSplashScreen();
+    gameState = GameState::ShowingMenu;
     break;
   }
   case GameState::Playing: {
     renderWindow.clear(sf::Color(0, 0, 0));
-    //hexBoard.draw(renderWindow);
+    // hexBoard.draw(renderWindow);
     renderWindow.display();
-    //float scrollX = hexBoard.getScrollX();
-    //float scrollY = hexBoard.getScrollY();
+    // float scrollX = hexBoard.getScrollX();
+    // float scrollY = hexBoard.getScrollY();
     switch (currentEvent.type) {
     case sf::Event::Closed: {
       gameState = GameState::Exiting;
@@ -71,32 +76,32 @@ void MainWindow::GameLoop() {
         gameState = GameState::ShowingMenu;
         break;
       }
-      // case sf::Keyboard::Left: {
-      //   scrollX += scrollSpeed;
-      //   break;
-      // }
-      // case sf::Keyboard::Up: {
-      //   scrollY += scrollSpeed;
-      //   break;
-      // }
-      // case sf::Keyboard::Right: {
-      //   scrollX -= scrollSpeed;
-      //   break;
-      // }
-      // case sf::Keyboard::Down: {
-      //   scrollY -= scrollSpeed;
-      //   break;
-      // }
+        // case sf::Keyboard::Left: {
+        //   scrollX += scrollSpeed;
+        //   break;
+        // }
+        // case sf::Keyboard::Up: {
+        //   scrollY += scrollSpeed;
+        //   break;
+        // }
+        // case sf::Keyboard::Right: {
+        //   scrollX -= scrollSpeed;
+        //   break;
+        // }
+        // case sf::Keyboard::Down: {
+        //   scrollY -= scrollSpeed;
+        //   break;
+        // }
       }
-      //hexBoard.setScrollPos(scrollX, scrollY);
+      // hexBoard.setScrollPos(scrollX, scrollY);
       break;
     }
     case sf::Event::MouseButtonReleased: {
-      //hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
+      // hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
       break;
     }
     case sf::Event::MouseButtonPressed: {
-      //hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
+      // hexBoard.handleClick(currentEvent.mouseButton, currentEvent.type);
       break;
     }
     default:
@@ -108,21 +113,32 @@ void MainWindow::GameLoop() {
 }
 #pragma GCC pop
 
-AbsRect MainWindow::getRelRect(double relx, double rely, double relheight,
-                               double relwidth) {
+AbsRect MainWindow::GetAbsRectFromRel(RelRect r) {
   AbsRect ret;
   auto v = renderWindow.getSize();
-  ret.left = gui::AbsType(relx * v.x);
-  ret.top = gui::AbsType(rely * v.y);
-  ret.height = gui::AbsType(relheight * v.y);
-  ret.width = gui::AbsType(relwidth * v.x);
+  ret.left = gui::AbsType(r.left * v.x);
+  ret.top = gui::AbsType(r.top * v.y);
+  ret.height = gui::AbsType(r.height * v.y);
+  ret.width = gui::AbsType(r.width * v.x);
   return ret;
 }
 
 void MainWindow::ShowSplashScreen() {
-  SplashScreen splashScreen;
-  splashScreen.Show(renderWindow);
-  gameState = GameState::ShowingMenu;
+  sf::Sprite sprite = TextureCache::getSprite("splashscreen.png");
+
+  renderWindow.draw(sprite);
+  renderWindow.display();
+
+  sf::Event event;
+  while (true) {
+    while (renderWindow.pollEvent(event)) {
+      if (event.type == sf::Event::EventType::KeyPressed ||
+          event.type == sf::Event::EventType::MouseButtonPressed ||
+          event.type == sf::Event::EventType::Closed) {
+        return;
+      }
+    }
+  }
 }
 
 void MainWindow::ShowMenu() {
