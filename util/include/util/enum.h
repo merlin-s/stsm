@@ -46,9 +46,9 @@ template <class Enum> struct enum_traits {
 
 #define Us_scoped_elem(r, data, elem) data::elem
 #define Us_scoped_elem_c(r, data, elem) data::elem,
-#define Us_enum_pair(r, data, elem)                                            \
-  { data::elem, BOOST_PP_STRINGIZE(elem) }
-#define Us_enum_pair_c(r, data, elem) Us_enum_pair(r, data, elem),
+#define Us_enum_str_case(r, data, elem)                                        \
+  case data::elem:                                                             \
+    return BOOST_PP_STRINGIZE(elem);
 #define Us_traits_enumerator_get(r, data, elem)                                \
   template <>                                                                  \
   template <>                                                                  \
@@ -63,23 +63,15 @@ template <class Enum> struct enum_traits {
   BOOST_PP_SEQ_FOR_EACH(macro, data, BOOST_PP_SEQ_POP_BACK(seq))               \
   macro_last(0, data, Us_back(seq))
 
-#define U_enum_from_seq_internal(name, seq, count, static)                     \
+#define U_enum_s_internal(name, seq, count, static)                            \
   enum class name { BOOST_PP_SEQ_ENUM(seq) };                                  \
-  const constexpr static std::array<name, count> name##_array = {              \
-      Us_foreach_lastspecial(seq, name, Us_scoped_elem_c, Us_scoped_elem)};
+  constexpr static const std::array<name, count> name##_array = {              \
+      Us_foreach_lastspecial(seq, name, Us_scoped_elem_c, Us_scoped_elem)};    \
+  constexpr static const char *to_string(name n) {                             \
+    switch (n) { BOOST_PP_SEQ_FOR_EACH(Us_enum_str_case, name, seq) };         \
+  }
 
-#define U_enum_map_from_seq_internal(name, seq, count, static)                 \
-  const static std::map<name, const char *> name##_map = {                     \
-      Us_foreach_lastspecial(seq, name, Us_enum_pair_c, Us_enum_pair)};
-
-#define DEF_ENUM_IN_NS_S(name, seq)                                            \
-  U_enum_from_seq_internal(name, seq, BOOST_PP_SEQ_SIZE(seq),                  \
-                           BOOST_PP_EMPTY())                                   \
-      U_enum_map_from_seq_internal(name, seq, BOOST_PP_SEQ_SIZE(seq),          \
-                                   BOOST_PP_EMPTY())
-#define DEF_ENUM_IN_CLASS_S(name, seq)                                         \
-  U_enum_from_seq_internal(name, seq, BOOST_PP_SEQ_SIZE(seq), static)
-
+#define DEF_N4428(name, ...) DEF_N4428_S(name, DEF_ENUM_SEQUENCE(__VA_ARGS__))
 #define DEF_N4428_S(name, seq)                                                 \
   namespace ENUM_N4428_NS {                                                    \
   template <> struct enum_traits<name>::enumerators {                          \
@@ -90,12 +82,12 @@ template <class Enum> struct enum_traits {
   }
 
 #define DEF_ENUM_SEQUENCE BOOST_PP_VARIADIC_TO_SEQ
-
-#define DEF_N4428(name, ...) DEF_N4428_S(name, DEF_ENUM_SEQUENCE(__VA_ARGS__))
-
+#define DEF_ENUM_IN_NS_S(name, seq)                                            \
+  U_enum_s_internal(name, seq, BOOST_PP_SEQ_SIZE(seq), BOOST_PP_EMPTY())
+#define DEF_ENUM_IN_CLASS_S(name, seq)                                         \
+  U_enum_s_internal(name, seq, BOOST_PP_SEQ_SIZE(seq), static)
 #define DEF_ENUM_IN_NS(name, ...)                                              \
   DEF_ENUM_IN_NS_S(name, DEF_ENUM_SEQUENCE(__VA_ARGS__))
-
 #define DEF_ENUM_IN_CLASS(name, ...)                                           \
   DEF_ENUM_IN_CLASS_S(name, DEF_ENUM_SEQUENCE(__VA_ARGS__))
 
