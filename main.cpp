@@ -11,10 +11,9 @@ int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
   gui::MainWindow mainWindowInstance;
   gui::mainWindow = &mainWindowInstance;
-  // qInstallMessageHandler(QDebugVSOutput);
-  // gui::init();
-  // gui::MainWindow window(QUrl::fromLocalFile("MainWindow.qml"));
-  gui::mainWindow->Start();
+
+  gui::mainWindow->GameLoop();
+
   // return a.exec();
   return 0;
 }

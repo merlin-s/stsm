@@ -4,37 +4,36 @@
 
 namespace gui {
 
-
 class MainWindow {
 public:
-  MainWindow();
-  MainWindow(MainWindow const&) = delete;
-  MainWindow& operator=(MainWindow const&) = delete;
+    MainWindow();
+    MainWindow(MainWindow const&) = delete;
+    MainWindow& operator=(MainWindow const&) = delete;
 
-  DEF_ENUM_IN_CLASS(GameState,
-    Uninitialized,
-    ShowingSplash,
-    Paused,
-    ShowingMenu,
-    Playing,
-    Exiting
-  );
+    DEF_ENUM_IN_CLASS(GameState,
+        Uninitialized,
+        ShowingSplash,
+        Paused,
+        ShowingMenu,
+        Playing,
+        Exiting);
 
+    AbsRect GetAbsRectFromRel(RelRect r);
 
-  void Start();
-
-  AbsRect GetAbsRectFromRel( RelRect r );
+    void GameLoop();
 
 private:
-  sf::Event getInput();
-  bool IsExiting();
-  void GameLoop();
+    void Init();
+    sf::Event getInput();
+    bool IsExiting() const;
 
-  void ShowSplashScreen();
-  void ShowMenu();
+    void HandleEvents();
 
-  GameState gameState = GameState::Uninitialized;
-  sf::RenderWindow renderWindow;
+    void ShowSplashScreen();
+    void ShowMenu();
+
+    GameState gameState = GameState::Uninitialized;
+    sf::RenderWindow renderWindow;
 };
-extern MainWindow *mainWindow;
+extern MainWindow* mainWindow;
 }
